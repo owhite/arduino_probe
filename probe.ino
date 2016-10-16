@@ -107,6 +107,8 @@ void setup() {
 
 void loop() {
 
+  // this line should NOT be needed for most arduinos
+  // but was required for a teensy2.0
   if(Serial.available()) { serialEvent(); }
 
 }
