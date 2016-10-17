@@ -26,7 +26,8 @@ class layout:
                                                                 sticky=W, pady=4)
       self.frame.pack()
 
-      l = probe_device('probe_example', 9600)
+      l = probe_device('probe_example2', 9600)
+      self.serial_exists = 0
       if l.port_found:
          self.serial = l.serial
          self.serial_exists = 1
