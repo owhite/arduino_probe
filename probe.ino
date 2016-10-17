@@ -1,11 +1,5 @@
-// consider checking for a heart beat from the
-//  master computer and if it doesnt receive one
-//  it could shut all the relays off. 
-
 #define SERIAL_SPEED  9600
-#define OUTPUT_RANGE 22
-#define RedPin       7
-#define GrnPin       8
+#define OUTPUT_RANGE 22 // the number of ports - the teensy2.0 has 22 
 
 String getValue(String data, char separator, int index) {
   int found = 0;
@@ -72,10 +66,13 @@ void process_command(String str) {
   // commands must begin with '$'
   if (c == '$') {
 
+    // this is responsible for telling the program that's trying to find
+    //  this arduino that it's found the right one.
+    //  what this is meant to do is simplify finding the correct serial device
     if (command.equals("probe_device")) {
-      Serial.print("relay_driver");
+      Serial.print("probe_example");
     }
-    if (command.equals("set_relay") && v1 != -1) {
+    if (command.equals("set_port") && v1 != -1) {
       Serial.printf("setting relay %d :: %d\n", v1, v2);
       v1--; // pin numbers start at zero, but using whole numbers for relays
       if(v2 == 1) {

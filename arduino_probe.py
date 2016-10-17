@@ -26,13 +26,13 @@ class layout:
                                                                 sticky=W, pady=4)
       self.frame.pack()
 
-      l = probe_device('relay_driver', 9600)
+      l = probe_device('probe_example', 9600)
       if l.port_found:
          self.serial = l.serial
          self.serial_exists = 1
 
    def toggle_button(self, num):
-      cmd = "$ set_relay %d %d\n" % (num + 1, self.vars[num].get())
+      cmd = "$ set_port %d %d\n" % (num + 1, self.vars[num].get())
       if (self.serial_exists):
          self.serial.flushInput()  # flush input buffer
          self.serial.flushOutput() # flush output buffer
